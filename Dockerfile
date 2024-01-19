@@ -1,6 +1,10 @@
 # Use ubi8 as the base image
 FROM registry.access.redhat.com/ubi8/ubi:latest
 
+# Set a different user (not tc agent)
+RUN useradd -ms /bin/bash newuser
+USER newuser
+
 # Install necessary tools
 RUN yum -y install curl tar gzip
 
