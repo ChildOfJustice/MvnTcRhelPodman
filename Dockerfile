@@ -1,10 +1,6 @@
 # Use ubi8 as the base image
 FROM registry.access.redhat.com/ubi8/ubi:latest
 
-# Set a different user (not tc agent)
-RUN useradd -ms /bin/bash newuser
-USER newuser
-
 # Install necessary tools
 RUN yum -y install curl tar gzip
 
@@ -37,3 +33,7 @@ RUN curl -L https://mirrors.huaweicloud.com/apache/maven/maven-3/3.6.3/binaries/
     tar xf /tmp/apache-maven.tar.gz -C /opt && \
     ln -s /opt/apache-maven-3.6.3 /opt/maven && \
     rm -f /tmp/apache-maven.tar.gz
+
+# Set a different user (not tc agent)
+RUN useradd -ms /bin/bash newuser
+USER newuser
