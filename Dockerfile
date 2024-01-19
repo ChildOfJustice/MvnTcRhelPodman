@@ -20,11 +20,16 @@ ENV MAVEN_HOME=/opt/maven
 ENV PATH=${MAVEN_HOME}/bin:${PATH}
 
 # Define the version of Maven
-ARG MAVEN_VERSION=3.8.4
+ARG MAVEN_VERSION=3.6.3
 
 # Download and install Maven
-RUN curl -L https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz -o /tmp/apache-maven.tar.gz && \
-    tar xf /tmp/apache-maven.tar.gz -C /opt && \
-    ln -s /opt/apache-maven-${MAVEN_VERSION} /opt/maven && \
-    rm -f /tmp/apache-maven.tar.gz
+#RUN curl -L https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz -o /tmp/apache-maven.tar.gz && \
+#    tar xf /tmp/apache-maven.tar.gz -C /opt && \
+#    ln -s /opt/apache-maven-${MAVEN_VERSION} /opt/maven && \
+#    rm -f /tmp/apache-maven.tar.gz
 
+#for old mavens
+RUN curl -L https://dlcdn.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz -o /tmp/apache-maven.tar.gz && \
+    tar xf /tmp/apache-maven.tar.gz -C /opt && \
+    ln -s /opt/apache-maven-3.6.3 /opt/maven && \
+    rm -f /tmp/apache-maven.tar.gz
