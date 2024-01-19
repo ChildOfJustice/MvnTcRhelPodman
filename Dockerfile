@@ -34,6 +34,7 @@ RUN curl -L https://mirrors.huaweicloud.com/apache/maven/maven-3/3.6.3/binaries/
     ln -s /opt/apache-maven-3.6.3 /opt/maven && \
     rm -f /tmp/apache-maven.tar.gz
 
-# Set a different user (not tc agent)
-RUN useradd -ms /bin/bash newuser
+# Set a different user (not tc agent) but the shared group with a real ID from the host
+RUN groupadd -g 1001 sharedgroup && \
+    useradd -ms /bin/bash -g sharedgroup newuser
 USER newuser
